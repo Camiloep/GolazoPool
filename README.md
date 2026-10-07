@@ -110,4 +110,4 @@ El repositorio todavía no incluye las migraciones del esquema ni los datos inic
 
 ## Licencia
 
-[MIT](LICENSE)
+Todos los derechos reservados. El código se publica solo para consulta y evaluación; no se permite copiarlo, modificarlo, distribuirlo ni usarlo sin autorización escrita del autor. Ver [LICENSE](LICENSE).
