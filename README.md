@@ -57,6 +57,8 @@ El calendario y los resultados llegan de tres fuentes, todas a través de endpoi
 
 Los trabajos de `pg_cron` que llaman a los endpoints de Flashscore están en [database/flashscore_results_cron.sql](database/flashscore_results_cron.sql). Todos aceptan `dryRun=1` para probar sin escribir.
 
+Fuera de temporada esos trabajos quedan inactivos. Para que Supabase no pause el proyecto del plan gratuito por inactividad, un Vercel Cron diario ([vercel.json](vercel.json)) llama a `GET /api/internal/keepalive`, que hace una lectura en la base de datos y está protegido con `CRON_SECRET`.
+
 ### Seguridad
 
 - Todas las tablas tienen Row Level Security y solo admiten usuarios con sesión.
@@ -87,6 +89,7 @@ La aplicación queda en `http://localhost:3000`. Otros scripts: `npm run build`,
 | `NEXT_PUBLIC_DATA_PRIVACY_CONTACT` | Canal de habeas data que se publica en `/privacy` |
 | `SUPABASE_SERVICE_ROLE_KEY` | Clave de servicio, solo en servidor |
 | `INTERNAL_CRON_SECRET` | Secreto que deben enviar los cron a los endpoints internos |
+| `CRON_SECRET` | Secreto que Vercel envía al cron diario de mantenimiento |
 | `OPENFOOTBALL_WORLDCUP_JSON_URL` | URL pública o ruta local del JSON de OpenFootball |
 | `SPORTDB_API_KEY` | Clave de la API de SportDB para los resultados finales |
 | `SPORTDB_WORLDCUP_BASE_URL` | URL base del torneo en la API de SportDB |
